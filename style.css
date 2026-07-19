@@ -1,0 +1,23 @@
+@import url(https://elmichiyt.github.io/cdn/fonts/file.css);
+
+body {
+    background: #224;
+    color: white;
+    font-family: 'Inter';
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 50vh;
+}
+
+/* Link style */
+.autor { font-family: 'ClassiCube'; color: white; text-decoration: none; font-size: 24px; }
+.autor:hover { text-decoration: underline; }
+
+h1 { font-size: 64px; }
+p { font-size: 24px; }
+h1, p { margin: 0; }
+
+.content {
+    margin-top: 10vh;
+}
