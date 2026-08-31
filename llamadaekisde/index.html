@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enlace directo (V2)</title>
+<title>Enlace directo (FUNCIONA MRD)</title>
 <style>
   :root{
     --bg: #10121a;
@@ -358,7 +358,7 @@
     <button class="danger" id="btnHangup" style="width:100%;">Colgar</button>
   </div>
 
-  <p class="foot-note">El audio viaja directo entre los dos equipos. Solo se usa un servidor STUN público para descubrir cómo conectarse (no ve ni transporta audio).</p>
+  <p class="foot-note">El audio intenta viajar siempre directo entre los dos equipos; si la red de alguno lo impide, entra un TURN público de respaldo. En cualquiera de los dos casos el audio va cifrado de extremo a extremo (DTLS-SRTP) — ni el TURN ni nadie de por medio puede escucharlo, solo reenvía paquetes cifrados que no puede leer.</p>
 </div>
 
 <audio id="remoteAudio" autoplay></audio>
@@ -367,9 +367,13 @@
 (function(){
   const ICE_SERVERS = [
     { urls: 'stun:stun.l.google.com:19302' },
+    { urls: 'stun:stun1.l.google.com:19302' },
+    { urls: 'stun:stun2.l.google.com:19302' },
+    { urls: 'stun:stun3.l.google.com:19302' },
     // TURN público gratuito (openrelay.metered.ca) — solo se usa como último
     // recurso si falla la conexión directa. Puede ser lento/inestable y,
-    // a diferencia de STUN, si se usa el audio SÍ pasa por ese servidor.
+    // a diferencia de STUN, si se usa el audio SÍ pasa por ese servidor
+    // (aunque sigue viajando cifrado de extremo a extremo, ver nota abajo).
     { urls: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject' },
     { urls: 'turn:openrelay.metered.ca:443', username: 'openrelayproject', credential: 'openrelayproject' },
     { urls: 'turn:openrelay.metered.ca:443?transport=tcp', username: 'openrelayproject', credential: 'openrelayproject' }
@@ -449,7 +453,7 @@
   }
 
   function createPeerConnection(){
-    const conn = new RTCPeerConnection({ iceServers: ICE_SERVERS });
+    const conn = new RTCPeerConnection({ iceServers: ICE_SERVERS, iceCandidatePoolSize: 4 });
     conn.addEventListener('track', ev => {
       remoteAudioEl.srcObject = ev.streams[0];
     });
