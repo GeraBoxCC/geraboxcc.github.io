@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Enlace directo</title>
+<title>Enlace directo (V2)</title>
 <style>
   :root{
     --bg: #10121a;
@@ -365,7 +365,15 @@
 
 <script>
 (function(){
-  const ICE_SERVERS = [{ urls: 'stun:stun.l.google.com:19302' }];
+  const ICE_SERVERS = [
+    { urls: 'stun:stun.l.google.com:19302' },
+    // TURN público gratuito (openrelay.metered.ca) — solo se usa como último
+    // recurso si falla la conexión directa. Puede ser lento/inestable y,
+    // a diferencia de STUN, si se usa el audio SÍ pasa por ese servidor.
+    { urls: 'turn:openrelay.metered.ca:80', username: 'openrelayproject', credential: 'openrelayproject' },
+    { urls: 'turn:openrelay.metered.ca:443', username: 'openrelayproject', credential: 'openrelayproject' },
+    { urls: 'turn:openrelay.metered.ca:443?transport=tcp', username: 'openrelayproject', credential: 'openrelayproject' }
+  ];
   const BAR_COUNT = 24;
 
   const $ = id => document.getElementById(id);
