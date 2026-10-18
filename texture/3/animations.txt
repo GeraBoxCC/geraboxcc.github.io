@@ -1,0 +1,83 @@
+# This file defines the animations used in a texture pack for ClassiCube.
+# Each line is in the format : <TileX> <TileY> <FrameX> <FrameY> <Frame size> <Frames count> <Tick delay>
+# - TileX and TileY are the coordinates of the tile in terrain.png that will be replaced by the animation frames.
+#     Essentially, TileX and TileY are the remainder and quotient of an ID in F10 menu divided by 16
+#     For instance, obsidian texture(37) has TileX of 5, and TileY of 2
+# - FrameX and FrameY are the pixel coordinates of the first animation frame in animations.png.
+# - Frame Size is the size in pixels of an animation frame.
+# - Frames count is the number of used frames.  The first frame is located at
+#     (FrameX, FrameY), the second one at (FrameX + FrameSize, FrameY) and so on.
+# - Tick delay is the number of ticks a frame doesn't change. For instance, delay of 0
+#     means that the tile would be replaced every tick, while delay of 2 means
+#     'replace with frame 1, don't change frame, don't change frame, replace with frame 2'.
+# NOTE: If a file called 'uselavaanim' is in the texture pack, the game instead generates the lava texture animation.
+# NOTE: If a file called 'usewateranim' is in the texture pack, the game instead generates the water texture animation.
+
+# fire
+6 2 0 0 16 32 0
+
+# rainbow block
+1 11 0 32 16 32 0
+
+# rainbow glass
+1 12 0 48 16 32 0
+
+# nether portal
+6 8 0 16 16 32 0
+
+# soul fire
+8 6 0 64 16 32 0
+
+# border block
+4 13 0 80 16 4 10
+
+# magma block
+6 5 0 96 16 6 1
+
+# oak leaves
+6 1 0 112 16 4 10
+
+# water
+14 0 0 128 16 32 0
+
+# lava
+14 1 0 144 16 40 1
+
+# compass
+6 14 0 160 16 13 1
+
+# rainbow
+10 27 0 176 16 21 0
+
+# coin
+11 27 336 176 16 14 0
+
+# cherry leaves
+0 11 64 112 16 4 10
+
+# pale oak leaves
+1 24 128 112 16 4 10
+
+# spruce leaves
+1 21 0 192 16 4 10
+
+# birch leaves
+1 22 64 192 16 4 10
+
+# jungle leaves
+1 23 128 192 16 4 10
+
+# acacia leaves
+10 22 192 192 16 4 10
+
+# dark oak leaves
+10 23 256 192 16 4 10
+
+#Enchanted Golden Apple
+14 22 0 208 16 40 0
+
+#End Cystal
+0 9 0 224 16 40 0
+
+#Respawn Anchor
+0 18 0 240 16 32 0
